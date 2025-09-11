@@ -1,6 +1,7 @@
-    using UnityEngine;
+using UnityEngine;
 
-    public class GridCell : MonoBehaviour   // 
-    {
-        public bool isOccupied = false;  // Is there a tower here?
-    }
+public class GridCell : MonoBehaviour
+{
+    public bool isOccupied = false;
+    [HideInInspector] public TowerPlacer placer; // set by TowerPlacer when clicked
+}

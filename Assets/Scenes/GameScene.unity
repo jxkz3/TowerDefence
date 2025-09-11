@@ -324,7 +324,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be7b90dd672000d4389fc5ebcecb688f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  towerPrefabs: []
+  towerPrefabs:
+  - {fileID: 915073414119254524, guid: 08e04127cce95d341b428caee9e33fc6, type: 3}
+  - {fileID: 915073414119254524, guid: e6f76f4c1a06ed942bda7e60cc99a7e5, type: 3}
+  selectionPanel: {fileID: 858852236}
 --- !u!4 &211358254
 Transform:
   m_ObjectHideFlags: 0
@@ -463,7 +466,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 322094388}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 211358253}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: PlaceRedTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &322094388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1569,7 +1584,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 798317763}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 211358253}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: PlaceBlueTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &798317763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1689,7 +1716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &858852237
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2744,6 +2771,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7434225767372082880, guid: 4ba7e1e90c141a34eb0f407ca0064ae4, type: 3}
   m_PrefabInstance: {fileID: 2118987643}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1345226271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1345226273}
+  - component: {fileID: 1345226272}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1345226272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345226271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440b6da93ef64764ca9a4986d68de0ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  towerSelectionPanel: {fileID: 858852236}
+--- !u!4 &1345226273
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345226271}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 238.13449, y: 474.90182, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1371246712 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 417585463920934560, guid: b91900afe9d2e9c4b96f5443a1943dc7, type: 3}
@@ -3333,3 +3405,4 @@ SceneRoots:
   - {fileID: 211358254}
   - {fileID: 421415609}
   - {fileID: 1602296367}
+  - {fileID: 1345226273}

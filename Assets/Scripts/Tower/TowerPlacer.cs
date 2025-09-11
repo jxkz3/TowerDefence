@@ -3,42 +3,30 @@ using UnityEngine.InputSystem;
 
 public class TowerPlacer : MonoBehaviour
 {
-    public GameObject[] towerPrefabs;   // Assign all tower prefabs in Inspector
-    private GameObject selectedTowerPrefab;
+    public GameObject[] towerPrefabs;   // 0 = Red, 1 = Blue
+    public GameObject selectionPanel;   // assign your UI panel in Inspector
+
     private Camera mainCam;
+    private GridCell selectedCell;      // the cell player tapped
 
     void Start()
     {
         mainCam = Camera.main;
-
-        // Default tower = first one
-        if (towerPrefabs.Length > 0)
-            selectedTowerPrefab = towerPrefabs[0];
-    }
-
-    public void SelectTower(int index)
-    {
-        if (index >= 0 && index < towerPrefabs.Length)
-        {
-            selectedTowerPrefab = towerPrefabs[index];
-            Debug.Log("Selected Tower: " + selectedTowerPrefab.name);
-        }
+        selectionPanel.SetActive(false); // hide panel initially
     }
 
     void Update()
     {
-        if (selectedTowerPrefab == null) return;
-
         // Mouse input (PC)
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
-            TryPlaceTower(Mouse.current.position.ReadValue());
+            CheckCell(Mouse.current.position.ReadValue());
 
         // Touch input (Mobile)
         if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
-            TryPlaceTower(Touchscreen.current.primaryTouch.position.ReadValue());
+            CheckCell(Touchscreen.current.primaryTouch.position.ReadValue());
     }
 
-    void TryPlaceTower(Vector2 screenPos)
+    void CheckCell(Vector2 screenPos)
     {
         Ray ray = mainCam.ScreenPointToRay(screenPos);
 
@@ -48,9 +36,31 @@ public class TowerPlacer : MonoBehaviour
 
             if (cell != null && !cell.isOccupied)
             {
-                Instantiate(selectedTowerPrefab, cell.transform.position, Quaternion.identity);
-                cell.isOccupied = true;
+                selectedCell = cell;
+                selectionPanel.SetActive(true); // open the tower choice panel
             }
         }
+    }
+
+    // Called by Red Button
+    public void PlaceRedTower()
+    {
+        PlaceTower(0); // index 0 = red
+    }
+
+    // Called by Blue Button
+    public void PlaceBlueTower()
+    {
+        PlaceTower(1); // index 1 = blue
+    }
+
+    void PlaceTower(int index)
+    {
+        if (selectedCell == null || selectedCell.isOccupied) return;
+
+        Instantiate(towerPrefabs[index], selectedCell.transform.position, Quaternion.identity);
+        selectedCell.isOccupied = true;
+        selectionPanel.SetActive(false); // hide after placing
+        selectedCell = null; // clear selection
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CameraController : MonoBehaviour
+public class CameraDragRightHalf : MonoBehaviour
 {
     [Header("Drag Settings")]
     public float dragSpeed = 0.1f;
@@ -32,24 +32,36 @@ public class CameraController : MonoBehaviour
 
     void HandleDrag()
     {
+        Vector2 screenPos = Vector2.zero;
+
         // --- Mouse Drag (PC) ---
-        if (Mouse.current != null)
+        if (Mouse.current != null && Mouse.current.leftButton.isPressed)
         {
-            if (Mouse.current.leftButton.isPressed)
+            screenPos = Mouse.current.position.ReadValue();
+
+            //  Only allow drag if cursor is on right half
+            if (screenPos.x > Screen.width / 2)
             {
-                Vector3 mouseDelta = Mouse.current.position.ReadValue() - (Vector2)lastMousePos;
+                Vector3 mouseDelta = screenPos - (Vector2)lastMousePos;
                 Vector3 move = new Vector3(-mouseDelta.x, 0, -mouseDelta.y) * dragSpeed * Time.deltaTime;
                 transform.Translate(move, Space.World);
             }
-            lastMousePos = Mouse.current.position.ReadValue();
+
+            lastMousePos = screenPos;
         }
 
         // --- Touch Drag (Mobile) ---
         if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed)
         {
-            Vector2 touchDelta = Touchscreen.current.primaryTouch.delta.ReadValue();
-            Vector3 move = new Vector3(-touchDelta.x, 0, -touchDelta.y) * dragSpeed * Time.deltaTime;
-            transform.Translate(move, Space.World);
+            screenPos = Touchscreen.current.primaryTouch.position.ReadValue();
+
+            //  Only allow drag if touch is on right half
+            if (screenPos.x > Screen.width / 2)
+            {
+                Vector2 touchDelta = Touchscreen.current.primaryTouch.delta.ReadValue();
+                Vector3 move = new Vector3(-touchDelta.x, 0, -touchDelta.y) * dragSpeed * Time.deltaTime;
+                transform.Translate(move, Space.World);
+            }
         }
     }
 

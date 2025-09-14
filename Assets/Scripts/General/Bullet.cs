@@ -2,29 +2,55 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 10f;
-    public float damage = 10f;   // tower will assign this value
-    public float lifeTime = 3f;
+    public float speed = 20f;
+    public float damage = 10f;
+    public float lifetime = 3f;
+
+    private Vector3 targetPosition;
+    private GameObject targetEnemy;
 
     void Start()
     {
-        Destroy(gameObject, lifeTime); // destroy bullet after X seconds
+        Destroy(gameObject, lifetime); // safety cleanup
+    }
+
+    public void SetTarget(Vector3 targetPos, GameObject enemy)
+    {
+        targetPosition = targetPos;
+        targetEnemy = enemy;
     }
 
     void Update()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        // Destroy if target is gone
+        if (targetEnemy == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        // Update target position (enemy could move)
+        Collider enemyCollider = targetEnemy.GetComponent<Collider>();
+        targetPosition = enemyCollider != null ? enemyCollider.bounds.center : targetEnemy.transform.position;
+
+        // Move toward target
+        Vector3 direction = (targetPosition - transform.position).normalized;
+        transform.position += direction * speed * Time.deltaTime;
+
+        // Rotate bullet to face movement
+        if (direction != Vector3.zero)
+            transform.rotation = Quaternion.LookRotation(direction);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        // Example: If the enemy has "EnemyHealth" script
-      /*  EnemyHealth enemy = other.GetComponent<EnemyHealth>();
-        if (enemy != null)
+        if (other.CompareTag("Enemy"))
         {
-            enemy.TakeDamage(damage);
-            Destroy(gameObject); // destroy bullet on hit
+            EnemyHealth enemy = other.GetComponent<EnemyHealth>();
+            if (enemy != null)
+                enemy.TakeDamage(damage);
+
+            Destroy(gameObject); // disappear immediately
         }
-      */
     }
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6018814371887653932}
   - component: {fileID: 8056783401356891189}
+  - component: {fileID: 204974936455763790}
   m_Layer: 0
   m_Name: BlueTower
   m_TagString: Untagged
@@ -52,6 +53,18 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3416935766484360054, guid: 697e6a721f9c9d44391a66589f504152, type: 3}
   firePoint: {fileID: 8318642175239793127}
   rotatingPart: {fileID: 5273759699146431863}
+--- !u!114 &204974936455763790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597667029273381615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8deacf6162010245af03f02dfa61af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &4140745554764022154
 GameObject:
   m_ObjectHideFlags: 0

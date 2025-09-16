@@ -3854,7 +3854,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -4395,6 +4395,7 @@ GameObject:
   - component: {fileID: 1951639267}
   - component: {fileID: 1951639266}
   - component: {fileID: 1951639269}
+  - component: {fileID: 1951639270}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4439,7 +4440,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -4478,6 +4479,20 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3416935766484360054, guid: 697e6a721f9c9d44391a66589f504152, type: 3}
   firePoint: {fileID: 1808623154}
   rotatingPart: {fileID: 1879123662}
+--- !u!114 &1951639270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951639265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8deacf6162010245af03f02dfa61af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 10
+  deathEffect: {fileID: 0}
 --- !u!1001 &1985834730
 PrefabInstance:
   m_ObjectHideFlags: 0

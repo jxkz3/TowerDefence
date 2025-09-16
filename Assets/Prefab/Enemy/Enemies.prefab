@@ -202,6 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   maxHealth: 40
+  coinReward: 3
   deathEffect: {fileID: 0}
 --- !u!136 &-6162462250431081779
 CapsuleCollider:

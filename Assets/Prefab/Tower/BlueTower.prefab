@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6018814371887653932}
   - component: {fileID: 8056783401356891189}
   m_Layer: 0
-  m_Name: DefenceTower2
+  m_Name: BlueTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

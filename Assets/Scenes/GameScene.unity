@@ -327,6 +327,7 @@ MonoBehaviour:
   towerPrefabs:
   - {fileID: 597667029273381615, guid: ab7fefc613134d54884051b46bc45620, type: 3}
   - {fileID: 597667029273381615, guid: 7c539b1703d49b044a4a4b00de1618fa, type: 3}
+  - {fileID: 597667029273381615, guid: 80db109dc12c8364497f8904106aa351, type: 3}
   selectionPanel: {fileID: 858852236}
 --- !u!4 &211358254
 Transform:
@@ -691,7 +692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aef5a33e016fc4448494a2d895eb5e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  dragSpeed: 3
+  dragSpeed: 1
   zoomSpeed: 5
   minZoom: 5
   maxZoom: 20
@@ -710,7 +711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   target: {fileID: 1951639268}
-  offset: {x: 0, y: 7, z: -5}
+  offset: {x: 0, y: 17, z: -19}
   smoothSpeed: 1
 --- !u!1 &335881568
 GameObject:
@@ -3896,7 +3897,7 @@ GameObject:
   - component: {fileID: 1901133236}
   - component: {fileID: 1901133235}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: YellowTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3964,7 +3965,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1901133236}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 211358253}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: PlaceYellowTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1901133236
 MonoBehaviour:
   m_ObjectHideFlags: 0

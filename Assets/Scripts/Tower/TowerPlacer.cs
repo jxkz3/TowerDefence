@@ -54,6 +54,13 @@ public class TowerPlacer : MonoBehaviour
         PlaceTower(1); // index 1 = blue
     }
 
+    // Called By Yellow Tower
+    public void PlaceYellowTower()
+    {
+        PlaceTower(2); // index 2 = yellow
+    }
+
+
     void PlaceTower(int index)
     {
         if (selectedCell == null || selectedCell.isOccupied) return;

@@ -3,7 +3,8 @@ using UnityEngine.InputSystem;
 
 public class TowerPlacer : MonoBehaviour
 {
-    public GameObject[] towerPrefabs;   // 0 = Red, 1 = Blue
+    public GameObject[] towerPrefabs;   // 0 = Red, 1 = Blue, 2 = Yellow
+    public int[] towerCosts;            // must match size/order of towerPrefabs
     public GameObject selectionPanel;   // assign your UI panel in Inspector
 
     private Camera mainCam;
@@ -45,29 +46,38 @@ public class TowerPlacer : MonoBehaviour
     // Called by Red Button
     public void PlaceRedTower()
     {
-        PlaceTower(0); // index 0 = red
+        PlaceTower(0); // Red = index 0
     }
 
     // Called by Blue Button
     public void PlaceBlueTower()
     {
-        PlaceTower(1); // index 1 = blue
+        PlaceTower(1); // Blue = index 1
     }
 
-    // Called By Yellow Tower
+    // Called by Yellow Tower
     public void PlaceYellowTower()
     {
-        PlaceTower(2); // index 2 = yellow
+        PlaceTower(2); // Yellow = index 2
     }
-
 
     void PlaceTower(int index)
     {
         if (selectedCell == null || selectedCell.isOccupied) return;
 
-        Instantiate(towerPrefabs[index], selectedCell.transform.position, Quaternion.identity);
-        selectedCell.isOccupied = true;
-        selectionPanel.SetActive(false); // hide after placing
-        selectedCell = null; // clear selection
+        int cost = towerCosts[index];
+
+        //  Check if player has enough coins
+        if (CoinManager.Instance != null && CoinManager.Instance.SpendCoins(cost))
+        {
+            Instantiate(towerPrefabs[index], selectedCell.transform.position, Quaternion.identity);
+            selectedCell.isOccupied = true;
+            selectionPanel.SetActive(false); // hide after placing
+            selectedCell = null; // clear selection
+        }
+        else
+        {
+            Debug.Log("Not enough coins to place " + towerPrefabs[index].name);
+        }
     }
 }

@@ -2535,7 +2535,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 45.221085, y: 93.05127}
+  m_AnchoredPosition: {x: 45.22119, y: 93.05127}
   m_SizeDelta: {x: -129.2029, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &858852238
@@ -3928,6 +3928,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2082548175810931513, guid: d50269b9e05a70a4b8f7ea33efcca87a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4072661113583663585, guid: d50269b9e05a70a4b8f7ea33efcca87a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.82
@@ -4269,6 +4273,10 @@ PrefabInstance:
     - target: {fileID: 2082548175810931513, guid: d50269b9e05a70a4b8f7ea33efcca87a, type: 3}
       propertyPath: m_Name
       value: Castle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2082548175810931513, guid: d50269b9e05a70a4b8f7ea33efcca87a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4072661113583663585, guid: d50269b9e05a70a4b8f7ea33efcca87a, type: 3}
       propertyPath: m_LocalPosition.x

@@ -63,17 +63,33 @@ public class TowerPlacer : MonoBehaviour
 
     void PlaceTower(int index)
     {
-        if (selectedCell == null || selectedCell.isOccupied) return;
+        if (selectedCell == null) return;
 
         int cost = towerCosts[index];
 
-        //  Check if player has enough coins
+        // If cell already has a tower, remove it (sell or swap)
+        if (selectedCell.isOccupied && selectedCell.currentTower != null)
+        {
+            // Optional: refund some coins before replacing
+            // CoinManager.Instance.AddCoins(towerCosts[index] / 2); 
+
+            Destroy(selectedCell.currentTower);
+            selectedCell.isOccupied = false;
+        }
+
+        // Now check if we can afford new tower
         if (CoinManager.Instance != null && CoinManager.Instance.SpendCoins(cost))
         {
-            Instantiate(towerPrefabs[index], selectedCell.transform.position, Quaternion.identity);
+            GameObject newTower = Instantiate(
+                towerPrefabs[index],
+                selectedCell.transform.position,
+                Quaternion.identity
+            );
+
+            selectedCell.currentTower = newTower; // store reference
             selectedCell.isOccupied = true;
-            selectionPanel.SetActive(false); // hide after placing
-            selectedCell = null; // clear selection
+            selectionPanel.SetActive(false);
+            selectedCell = null;
         }
         else
         {

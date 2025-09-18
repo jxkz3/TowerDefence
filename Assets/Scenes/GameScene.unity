@@ -325,8 +325,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   towerPrefabs:
-  - {fileID: 597667029273381615, guid: 7c539b1703d49b044a4a4b00de1618fa, type: 3}
-  - {fileID: 597667029273381615, guid: 7c539b1703d49b044a4a4b00de1618fa, type: 3}
+  - {fileID: 597667029273381615, guid: 1c7282432c176904d8add26d933a1f55, type: 3}
+  - {fileID: 597667029273381615, guid: ab7fefc613134d54884051b46bc45620, type: 3}
   - {fileID: 597667029273381615, guid: 80db109dc12c8364497f8904106aa351, type: 3}
   towerCosts: 1e000000280000003c000000
   selectionPanel: {fileID: 858852236}
@@ -3413,7 +3413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca4fc7743b4f60439ba208c2dcd1180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  initialCoins: 100
+  initialCoins: 1000
   currentCoins: 0
   coinText: {fileID: 728224452}
 --- !u!4 &1538949798 stripped
@@ -3885,7 +3885,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f1424e16ea356c843a85db6de5e70f48, type: 2}
+  - {fileID: 2100000, guid: 67906c67a0ce29443b0e3c846470c0ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3934,7 +3934,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4072661113583663585, guid: d50269b9e05a70a4b8f7ea33efcca87a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.82
+      value: 15.66
       objectReference: {fileID: 0}
     - target: {fileID: 4072661113583663585, guid: d50269b9e05a70a4b8f7ea33efcca87a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4280,7 +4280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4072661113583663585, guid: d50269b9e05a70a4b8f7ea33efcca87a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.23929
+      value: 17.78
       objectReference: {fileID: 0}
     - target: {fileID: 4072661113583663585, guid: d50269b9e05a70a4b8f7ea33efcca87a, type: 3}
       propertyPath: m_LocalPosition.y

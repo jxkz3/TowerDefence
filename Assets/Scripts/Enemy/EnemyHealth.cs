@@ -7,19 +7,28 @@ public class EnemyHealth : MonoBehaviour
     private float currentHealth;
 
     [Header("Reward")]
-    public int coinReward = 10;   // how many coins this enemy gives
+    public int coinReward = 10;
 
     [Header("Effects")]
-    public GameObject deathEffect;   // optional explosion / particle effect
+    public GameObject deathEffect;
+
+    [Header("UI")]
+    public HealthBar healthBar;  // drag your HealthBar component here in Inspector
 
     void Start()
     {
         currentHealth = maxHealth;
+
+        if (healthBar != null)
+            healthBar.SetHealth(currentHealth, maxHealth);
     }
 
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
+
+        if (healthBar != null)
+            healthBar.SetHealth(currentHealth, maxHealth);
 
         if (currentHealth <= 0f)
         {
@@ -29,18 +38,16 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
-        // Reward player
         if (CoinManager.Instance != null)
         {
             CoinManager.Instance.AddCoins(coinReward);
         }
 
-        // Death effect
         if (deathEffect != null)
         {
             Instantiate(deathEffect, transform.position, Quaternion.identity);
         }
 
-        Destroy(gameObject); // remove enemy
+        Destroy(gameObject);
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [Header("Enemy Stats")]
-    public float maxHealth = 10f;
+    public float maxHealth = 30f;
     private float currentHealth;
 
     [Header("Reward")]

@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   towerPrefabs:
-  - {fileID: 597667029273381615, guid: 1c7282432c176904d8add26d933a1f55, type: 3}
+  - {fileID: 597667029273381615, guid: ab7fefc613134d54884051b46bc45620, type: 3}
   - {fileID: 597667029273381615, guid: ab7fefc613134d54884051b46bc45620, type: 3}
   - {fileID: 597667029273381615, guid: 80db109dc12c8364497f8904106aa351, type: 3}
   towerCosts: 1e000000280000003c000000

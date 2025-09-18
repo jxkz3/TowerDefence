@@ -35,45 +35,46 @@ public class TowerPlacer : MonoBehaviour
         {
             GridCell cell = hit.collider.GetComponent<GridCell>();
 
-            if (cell != null && !cell.isOccupied)
+            if (cell != null) // allow both empty + occupied
             {
                 selectedCell = cell;
-                selectionPanel.SetActive(true); // open the tower choice panel
+                selectionPanel.SetActive(true); // open tower choice panel
             }
         }
     }
 
     // Called by Red Button
-    public void PlaceRedTower()
-    {
-        PlaceTower(0); // Red = index 0
-    }
-
-    // Called by Blue Button
-    public void PlaceBlueTower()
-    {
-        PlaceTower(1); // Blue = index 1
-    }
-
-    // Called by Yellow Tower
-    public void PlaceYellowTower()
-    {
-        PlaceTower(2); // Yellow = index 2
-    }
+    public void PlaceRedTower() => PlaceTower(0);
+    public void PlaceBlueTower() => PlaceTower(1);
+    public void PlaceYellowTower() => PlaceTower(2);
 
     void PlaceTower(int index)
     {
-        if (selectedCell == null || selectedCell.isOccupied) return;
+        if (selectedCell == null) return;
 
         int cost = towerCosts[index];
 
-        //  Check if player has enough coins
+        // Check if player has enough coins
         if (CoinManager.Instance != null && CoinManager.Instance.SpendCoins(cost))
         {
-            Instantiate(towerPrefabs[index], selectedCell.transform.position, Quaternion.identity);
-            selectedCell.isOccupied = true;
-            selectionPanel.SetActive(false); // hide after placing
-            selectedCell = null; // clear selection
+            // Destroy old tower if exists
+            if (selectedCell.currentTower != null)
+            {
+                Destroy(selectedCell.currentTower);
+            }
+
+            // Place new tower
+            GameObject newTower = Instantiate(
+                towerPrefabs[index],
+                selectedCell.transform.position,
+                Quaternion.identity
+            );
+
+            selectedCell.currentTower = newTower;
+
+            // Close UI
+            selectionPanel.SetActive(false);
+            selectedCell = null;
         }
         else
         {

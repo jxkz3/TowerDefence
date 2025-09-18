@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6018814371887653932}
   - component: {fileID: 8056783401356891189}
   m_Layer: 0
-  m_Name: DefenceTower
+  m_Name: RedTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f1424e16ea356c843a85db6de5e70f48, type: 2}
+  - {fileID: 2100000, guid: 67906c67a0ce29443b0e3c846470c0ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -264,7 +264,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f1424e16ea356c843a85db6de5e70f48, type: 2}
+  - {fileID: 2100000, guid: 404dda91f0038af44b4946ad1193bb34, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

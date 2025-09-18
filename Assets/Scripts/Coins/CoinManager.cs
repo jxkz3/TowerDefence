@@ -6,7 +6,7 @@ public class CoinManager : MonoBehaviour
     public static CoinManager Instance;
 
     [Header("Coin Settings")]
-    public int initialCoins = 100;
+    public int initialCoins = 1000;
     public int currentCoins = 0;
 
     [Header("UI Reference")]

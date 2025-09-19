@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class TowerPlacer : MonoBehaviour
+public class WallPlacer : MonoBehaviour
 {
-    public GameObject[] towerPrefabs;   // 0 = Red, 1 = Blue, 2 = Yellow
-    public int[] towerCosts;            // must match size/order of towerPrefabs
-    public GameObject selectionPanel;   // assign your UI panel in Inspector
+    public GameObject[] wallPrefabs;   // 0 = Red, 1 = Blue, 2 = Yellow
+    public int[] wallCosts;            // must match size/order of wallPrefabs
+    public GameObject selectionPanel;  // assign your UI panel in Inspector
 
     private Camera mainCam;
-    private GridCell selectedCell;      // the cell player tapped
+    private WallGrid selectedCell;     // the cell player tapped
 
     void Start()
     {
@@ -33,46 +33,44 @@ public class TowerPlacer : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            GridCell cell = hit.collider.GetComponent<GridCell>();
+            WallGrid cell = hit.collider.GetComponent<WallGrid>();
 
             if (cell != null) // allow both empty + occupied
             {
                 selectedCell = cell;
-                selectionPanel.SetActive(true); // open tower choice panel
+                selectionPanel.SetActive(true); // open wall choice panel
             }
         }
     }
 
     // Called by Red Button
-    public void PlaceRedTower() => PlaceTower(0);
-    public void PlaceBlueTower() => PlaceTower(1);
-    public void PlaceYellowTower() => PlaceTower(2);
+    public void PlaceRedWall() => PlaceWall(0);
+    public void PlaceBlueWall() => PlaceWall(1);
+    public void PlaceYellowWall() => PlaceWall(2);
 
-    public void PlaceCastle() => PlaceTower(3);
-
-    void PlaceTower(int index)
+    void PlaceWall(int index)
     {
         if (selectedCell == null) return;
 
-        int cost = towerCosts[index];
+        int cost = wallCosts[index];
 
         // Check if player has enough coins
         if (CoinManager.Instance != null && CoinManager.Instance.SpendCoins(cost))
         {
-            // Destroy old tower if exists
-            if (selectedCell.currentTower != null)
+            // Destroy old wall if exists
+            if (selectedCell.currentWall != null)
             {
-                Destroy(selectedCell.currentTower);
+                Destroy(selectedCell.currentWall);
             }
 
-            // Place new tower
-            GameObject newTower = Instantiate(
-                towerPrefabs[index],
+            // Place new wall
+            GameObject newWall = Instantiate(
+                wallPrefabs[index],
                 selectedCell.transform.position,
                 Quaternion.identity
             );
 
-            selectedCell.currentTower = newTower;
+            selectedCell.currentWall = newWall;
 
             // Close UI
             selectionPanel.SetActive(false);
@@ -80,7 +78,7 @@ public class TowerPlacer : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough coins to place " + towerPrefabs[index].name);
+            Debug.Log("Not enough coins to place " + wallPrefabs[index].name);
         }
     }
 }

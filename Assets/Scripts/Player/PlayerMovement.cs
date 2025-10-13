@@ -9,12 +9,14 @@ public class PlayerMovement : MonoBehaviour
     [Header("References")]
     public Joystick joystick;   // Assign your UI joystick
     private Rigidbody rb;
+    private Animator animator;  // NEW — animator reference
 
     private Vector2 moveInput;  // for Input System (PC)
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>(); // NEW — get Animator component
     }
 
     private void Update()
@@ -33,6 +35,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         moveInput = new Vector2(horizontal, vertical);
+
+
+        if (animator != null)
+        {
+            bool isMoving = moveInput.magnitude > 0.1f;
+            animator.SetBool("isWalking", isMoving);
+        }
     }
 
     private void FixedUpdate()

@@ -2,21 +2,18 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public GameObject enemyPrefab;   // Drag your enemy prefab here
-    public Transform spawnPoint;     // Where the enemy appears
-    public float spawnInterval = 2f; // Time between spawns
-    public Transform[] waypoints;    // Assign your scene waypoints here
+    public GameObject[] enemyPrefabs; // assign multiple prefabs here
+    public Transform spawnPoint;
+    public Transform[] waypoints;
 
-    private void Start()
+    // Spawn a specific prefab
+    public void SpawnEnemy(GameObject prefab)
     {
-        InvokeRepeating(nameof(SpawnEnemy), 0f, spawnInterval);
-    }
+        if (prefab == null) return;
 
-    void SpawnEnemy()
-    {
-        GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
-
-        // Give the enemy the waypoint list
-        enemy.GetComponent<EnemyPath>().waypoints = waypoints;
+        GameObject enemy = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
+        EnemyPath path = enemy.GetComponent<EnemyPath>();
+        if (path != null)
+            path.waypoints = waypoints;
     }
 }

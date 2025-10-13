@@ -17,9 +17,20 @@ public class EnemyPath : MonoBehaviour
         if (waypointIndex < waypoints.Length)
         {
             Vector3 target = waypoints[waypointIndex].position;
+
+            // Move toward the target
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
-            if (Vector3.Distance(transform.position, target) < 0.1f)
+            // Rotate enemy toward target
+            Vector3 direction = target - transform.position;
+            if (direction != Vector3.zero)
+            {
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+            }
+
+            // Check if we reached the waypoint
+            if (transform.position == target)
                 waypointIndex++;
         }
         else

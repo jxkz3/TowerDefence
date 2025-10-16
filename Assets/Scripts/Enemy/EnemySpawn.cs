@@ -17,3 +17,4 @@ public class EnemySpawn : MonoBehaviour
             path.waypoints = waypoints;
     }
 }
+// Compare this snippet from Assets/Scripts/Enemy/EnemyAttack.cs:

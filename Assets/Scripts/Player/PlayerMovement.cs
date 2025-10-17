@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem;   // <- new Input System
+using UnityEngine.InputSystem; // new Input System
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,25 +7,25 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
 
     [Header("References")]
-    public Joystick joystick;   // Assign your UI joystick
+    public Joystick joystick; // optional mobile joystick
     private Rigidbody rb;
-    private Animator animator;  // NEW — animator reference
+    private Animator animator;
 
-    private Vector2 moveInput;  // for Input System (PC)
+    private Vector2 moveInput;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>(); // NEW — get Animator component
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        // Read joystick input (mobile)
+        // --- Mobile joystick input ---
         float horizontal = joystick != null ? joystick.Horizontal : 0f;
         float vertical = joystick != null ? joystick.Vertical : 0f;
 
-        // Read Input System (PC testing)
+        // --- Keyboard input ---
         if (Keyboard.current != null)
         {
             if (Keyboard.current.wKey.isPressed) vertical += 1f;
@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
         moveInput = new Vector2(horizontal, vertical);
 
-
+        // Walking animation
         if (animator != null)
         {
             bool isMoving = moveInput.magnitude > 0.1f;
@@ -46,17 +46,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Convert to world direction
-        Vector3 direction = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+        Vector3 moveDir = new Vector3(moveInput.x, 0, moveInput.y).normalized;
+        rb.MovePosition(rb.position + moveDir * moveSpeed * Time.fixedDeltaTime);
 
-        // Move
-        rb.MovePosition(transform.position + direction * moveSpeed * Time.fixedDeltaTime);
-
-        // Rotate
-        if (direction != Vector3.zero)
+        // Optional: small rotation toward movement
+        if (moveDir != Vector3.zero)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
-            rb.rotation = Quaternion.Slerp(rb.rotation, targetRotation, 0.2f);
+            Quaternion moveRot = Quaternion.LookRotation(moveDir);
+            rb.rotation = Quaternion.Slerp(rb.rotation, moveRot, 0.1f); // small factor to avoid rotation conflict
         }
     }
 }
